@@ -12,14 +12,15 @@ var strings = [{
 
 var StringList = React.createClass({displayName: "StringList",
 
-  deleteString: function (string) {
-    this.props.strings.splice(this.props.strings.indexOf(string), 1);
-    this.setState();
-  },
-    
-    render: function() {
-      var that = this;
-        return ( 
+            deleteString: function(string) {
+                this.prop.strings.splice(this.props.strings.indexOf(string), 1);
+                this.setState();
+            },
+
+            render: function() {
+                    var that = this;
+                    return (
+
             React.createElement("ul", null, 
                this.props.strings.map(function (string, i) {
                   return (
@@ -32,30 +33,41 @@ var StringList = React.createClass({displayName: "StringList",
         })
 
 
- var InputForm = React.createClass({displayName: "InputForm",
+ var EntryForm = React.createClass({displayName: "EntryForm",
+
              handleSubmit: function(e) {
                  e.preventDefault();
-                 var text = React.findDOMNode(this.refs.text).value;
-                 var trimText = text.trim();
-                 strings.push({"text": trimText});
-                 text = '';
-                 this.setState({strings:strings})
+
+                 var newString = this.refs.newString.getDOMNode().value;
+
+                 console.log(newString);
+                 
+                 strings.push({
+                     "text": newString
+                 });
+                 
+                 this.setState({
+                     strings: strings
+                 })
+                 
+
              },
-     render: function() {
-         return ( 
-          React.createElement("div", null, 
-             React.createElement("form", {className: "inputForm", onSubmit: this.handleSubmit}, 
-                React.createElement("h1", null, " Add a string to the list of strings."), 
-                React.createElement("input", {type: "text", ref: "text", placeholder: "Enter a string"}), 
-                React.createElement("input", {type: "submit", value: "Add String"})
-             ), 
-             React.createElement(StringList, {strings: strings})
-          )
+             render: function() {
+                     return (
+
+                React.createElement("div", null, 
+                   React.createElement("form", {className: "EntryForm", onSubmit: this.handleSubmit}, 
+                      React.createElement("h1", null, " Add a string to the list of strings."), 
+                      React.createElement("input", {type: "text", ref: "newString", placeholder: "Enter a string"}), 
+                      React.createElement("button", {type: "submit"}, "Add String")
+                   ), 
+                   React.createElement(StringList, {strings: strings})
+                )
          )
      }
  })
 
-  React.render(React.createElement(InputForm, null), document.body);
+  React.render(React.createElement(EntryForm, {strings: strings}), document.body);
 
 },{"react":157}],2:[function(require,module,exports){
 // shim for using process in browser
