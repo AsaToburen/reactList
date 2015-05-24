@@ -5,9 +5,7 @@ var gulp = require('gulp'),
     browserify = require('browserify'),
     concat = require('gulp-concat'),
     postcss = require('gulp-postcss'),
-    vars = require('postcss-simple-vars'),
     autoprefixer = require('autoprefixer-core'),
-    mqpacker = require('css-mqpacker'),
     csswring = require('csswring'),
     uglify = require('gulp-uglify'),
     buffer = require('vinyl-buffer'),
@@ -47,13 +45,12 @@ gulp.task('styles', function() {
         autoprefixer({
             browsers: ['last 2 versions']
         }),
-        mqpacker,
-        csswring
+        csswring,
     ];
 
     return gulp.src('./app/src/css/*.css')
+        .pipe(postcss([ require('postcss-simple-vars')({ silent: true }) ]))
         .pipe(postcss(processors))
-        .pipe(postcss([require('postcss-simple-vars')]))
         .pipe(gulp.dest('./app/dist/css'))
         .pipe(connect.reload());
 });

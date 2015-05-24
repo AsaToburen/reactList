@@ -2,6 +2,7 @@
 
 
 var React = require("react");
+
 var strings = [];
 
 var StringList = React.createClass({
@@ -26,7 +27,6 @@ var StringList = React.createClass({
     )
   }
 })
-
 
 var EntryForm = React.createClass({
 
