@@ -3,19 +3,18 @@ var gulp = require('gulp'),
     open = require('gulp-open'),
     react = require('gulp-react'),
     browserify = require('browserify'),
-    concat = require('gulp-concat'),
+    babelify = require('babelify'),
     postcss = require('gulp-postcss'),
     autoprefixer = require('autoprefixer-core'),
     csswring = require('csswring'),
     uglify = require('gulp-uglify'),
     buffer = require('vinyl-buffer'),
-    reactify = require('reactify'),
     source = require('vinyl-source-stream'),
     port = process.env.port || 8080;
 
 gulp.task('browserify', function() {
     return browserify('./app/src/js/components/app.js')
-        .transform(reactify)
+        .transform(babelify)
         .bundle()
         .pipe(source('bundle.js'))
         .pipe(buffer())
