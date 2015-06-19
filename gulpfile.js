@@ -49,7 +49,12 @@ gulp.task('styles', function() {
 
     return gulp.src('./app/src/css/*.css')
         .pipe(postcss([ require('postcss-simple-vars')({ silent: true }) ]))
-        .pipe(postcss(processors))
+        .pipe(postcss([
+            require('postcss-nested'),
+            require('postcss-simple-vars'),
+            require('autoprefixer-core')('last 3 versions'),
+            require('cssnext')
+            ]))
         .pipe(gulp.dest('./app/dist/css'))
         .pipe(connect.reload());
 });
@@ -73,4 +78,4 @@ gulp.task('watch', function() {
 
 gulp.task('default', ['browserify']);
 
-gulp.task('serve', ['browserify', 'styles', 'connect', 'open', 'watch']);
+gulp.task('serve', ['browserify',  'watch', 'styles', 'connect', 'open']);
