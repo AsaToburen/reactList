@@ -1,0 +1,61 @@
+
+/* Variables */
+
+$primaryFonts: "Trebuchet MS", Helvetica, sans-serif;
+
+$EntryForm-bg: #4C9AD2;
+$StringList-item-hover: #CBCBCB;
+$BorderDivider: #dedede;
+$PrimaryBackground: #dedede;
+
+/* Global Styles */
+
+html, body {
+    background-color: $mainBackground;
+    font-family: $primaryFonts;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Component Styles */
+
+.EntryForm {
+    background-color: $EntryForm-bg;
+    padding: 2.5em 2em;
+}
+
+.EntryForm-input {
+    padding: 0.3em 0.5em;
+    font-size: 1.55em;
+}
+
+.EntryForm-button {
+    cursor: pointer;
+    font-size: 1.55em;
+    margin-left: .5em;
+    padding: .33em;
+    border: 2px solid $BorderDivider;
+    background-color: default;
+}
+
+.StringList {
+    width: 50%;
+    margin: 2.5em auto;
+    padding: 0 3em;
+    list-style-type: none;
+    text-align: left;
+}
+
+.StringList-item {
+    cursor: pointer;
+    font-size: 1.55em;
+    padding: 1em 1.7em;
+    background-color: default;
+    transition: background-color .5s ease;
+}
+
+.StringList-item:hover {
+    background-color: $StringList-item-hover;
+}
+
